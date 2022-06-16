@@ -54,8 +54,7 @@ class MyHomePage extends StatefulWidget {
 
   final String title;
 
-  final PagedConfigureController controller =
-      Get.put(PagedConfigureController());
+  // final PagedConfigureController controller = Get.put(PagedConfigureController());
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();

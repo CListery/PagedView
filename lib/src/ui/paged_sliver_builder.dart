@@ -88,16 +88,24 @@ class PagedSliverBuilder<PageKeyType, ItemType>
 
   bool get _shrinkWrapFirstPageIndicators => shrinkWrapFirstPageIndicators;
 
+  PagedConfigureController? get _pagedConfigureController {
+    try {
+      return Get.find<PagedConfigureController>();
+    } catch (e) {
+      return null;
+    }
+  }
+
   WidgetBuilder get _firstPageErrorIndicatorBuilder =>
       _builderDelegate.firstPageErrorIndicatorBuilder ??
-      Get.find<PagedConfigureController>().firstPageErrorIndicatorBuilder ??
+      _pagedConfigureController?.firstPageErrorIndicatorBuilder ??
       (_) => FirstPageErrorIndicator(
             onTryAgain: controller.retryLastFailedRequest,
           );
 
   WidgetBuilder get _newPageErrorIndicatorBuilder =>
       _builderDelegate.newPageErrorIndicatorBuilder ??
-      Get.find<PagedConfigureController>().newPageErrorIndicatorBuilder ??
+      _pagedConfigureController?.newPageErrorIndicatorBuilder ??
       (_) => NewPageErrorIndicator(
             onTap: controller.retryLastFailedRequest,
           );
@@ -107,23 +115,22 @@ class PagedSliverBuilder<PageKeyType, ItemType>
             viewType: controller.viewType,
             gridDelegate: gridDelegate,
             itemBuilder: _builderDelegate.firstPageProgressShimmerBuilder ??
-                Get.find<PagedConfigureController>()
-                    .firstPageProgressShimmerBuilder,
+                _pagedConfigureController?.firstPageProgressShimmerBuilder,
           );
 
   WidgetBuilder get _newPageProgressIndicatorBuilder =>
       _builderDelegate.newPageProgressIndicatorBuilder ??
-      Get.find<PagedConfigureController>().newPageProgressIndicatorBuilder ??
+      _pagedConfigureController?.newPageProgressIndicatorBuilder ??
       (_) => const NewPageProgressIndicator();
 
   WidgetBuilder get _noItemsFoundIndicatorBuilder =>
       _builderDelegate.noItemsFoundIndicatorBuilder ??
-      Get.find<PagedConfigureController>().noItemsFoundIndicatorBuilder ??
+      _pagedConfigureController?.noItemsFoundIndicatorBuilder ??
       (_) => const NoItemsFoundIndicator();
 
   WidgetBuilder? get _noMoreItemsIndicatorBuilder =>
       _builderDelegate.noMoreItemsIndicatorBuilder ??
-      Get.find<PagedConfigureController>().noMoreItemsIndicatorBuilder ??
+      _pagedConfigureController?.noMoreItemsIndicatorBuilder ??
       (_) => const NoMoreItemsIndicator();
 
   int get _invisibleItemsThreshold => controller.invisibleItemsThreshold ?? 3;
