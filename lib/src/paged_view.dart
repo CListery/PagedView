@@ -14,7 +14,7 @@ enum ViewType {
   grid,
 }
 
-class FastLoader<PageKeyType, ItemType> extends StatelessWidget {
+class PagedView<PageKeyType, ItemType> extends StatelessWidget {
   final PagingController<PageKeyType, ItemType> controller;
   final PagedChildBuilderDelegate<ItemType> builderDelegate;
   final IndexedWidgetBuilder? separatorBuilder;
@@ -69,7 +69,7 @@ class FastLoader<PageKeyType, ItemType> extends StatelessWidget {
   /// Corresponds to [PagedSliverGrid.showNoMoreItemsIndicatorAsGridChild].
   final bool showNoMoreItemsIndicatorAsGridChild;
 
-  FastLoader.list({
+  PagedView.list({
     Key? key,
     required PageKeyType firstPageKey,
     required this.builderDelegate,
@@ -120,7 +120,7 @@ class FastLoader<PageKeyType, ItemType> extends StatelessWidget {
         showNoMoreItemsIndicatorAsGridChild = false,
         super(key: key);
 
-  FastLoader.grid({
+  PagedView.grid({
     Key? key,
     required PageKeyType firstPageKey,
     required this.builderDelegate,

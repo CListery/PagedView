@@ -88,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final _pageSize = 20;
   var count = 0;
 
-  FastLoader<int, String> buildFastLoader() {
+  PagedView<int, String> buildFastLoader() {
     // return FastLoader<int, String>.grid(
     //   firstPageKey: 1,
     //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -137,7 +137,7 @@ class _MyHomePageState extends State<MyHomePage> {
     //   },
     // );
 
-    return FastLoader<int, String>.list(
+    return PagedView<int, String>.list(
       firstPageKey: 1,
       builderDelegate: PagedChildBuilderDelegate(itemBuilder: (
               BuildContext context,
